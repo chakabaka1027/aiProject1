@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010128046088}
   - 212: {fileID: 212000012411908776}
   m_Layer: 0
-  m_Name: Sky
+  m_Name: SkyTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

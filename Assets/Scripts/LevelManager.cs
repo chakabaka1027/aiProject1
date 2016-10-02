@@ -15,8 +15,6 @@ public class LevelManager : MonoBehaviour {
 		CreateLevel();
 	}
 
-
-
 	void CreateLevel(){
 		string[] mapData = ReadLevelText();
 
