@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour {
 
 	void CreateLevel(){
 		string[] mapData = new string[]{
-			"0000","1111", "2222"
+			"0000","1111", "2222", "0000", "1111"
 		};
 
 		int mapX = mapData[0].ToCharArray().Length;
@@ -27,8 +27,10 @@ public class LevelManager : MonoBehaviour {
 		Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
 		for (int y = 0; y < mapY; y++){
+			char[] newTiles = mapData[y].ToCharArray();
+
 			for (int x = 0; x < mapX; x++){
-				PlaceTile("0", x, y, worldStart);
+				PlaceTile(newTiles[x].ToString(), x, y, worldStart);
 			}
 		}
 	}
