@@ -3,6 +3,17 @@ using System.Collections;
 
 public class Node {
 
+	public Vector2 nodeCoordinates;
+	public int platformIndex;
+	public enum nodeType{
+		none,
+		platform,
+		leftEdge,
+		rightEdge,
+		solo
+	};
+
+
 	public bool walkable;
 	public Vector3 worldPosition;
 	public int gridX;
