@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011593484608}
   - 212: {fileID: 212000012933807560}
   - 61: {fileID: 61000012916190168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlockTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000011761034342}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7390aed3f4aa148f3b868320a8e752e8, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0.08, y: -0.08}
