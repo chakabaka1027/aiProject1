@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 		isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, groundedMask);
 
 
-		if(Input.GetButtonDown("Jump") && isGrounded){
+		if(Input.GetKeyDown(KeyCode.W) && isGrounded){
 			rb.AddForce(new Vector2(0, 250));
 		}
 
