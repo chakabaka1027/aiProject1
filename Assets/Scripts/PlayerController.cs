@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		if(Input.GetKeyDown(KeyCode.W) && isGrounded){
-			rb.AddForce(new Vector2(0, 250));
+			rb.AddForce(new Vector2(0, 275));
 		}
 
 		if(!isGrounded){
