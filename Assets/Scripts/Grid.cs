@@ -8,7 +8,7 @@ public class Grid : MonoBehaviour {
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
-
+	public GameObject cube;
 	string[] mapData;
 
 	Node[,] grid;
@@ -27,25 +27,20 @@ public class Grid : MonoBehaviour {
 		gridSizeX = Mathf.RoundToInt(mapData[0].ToCharArray().Length);
 		gridSizeY = Mathf.RoundToInt(mapData.Length);
 
-		CreateGrid();
+		Invoke("CreateGrid", 0.1f);
 	}
 
 	void CreateGrid(){
 		grid = new Node[gridSizeX, gridSizeY];
 
 		//bottom left corner of grid
-		Vector3 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
-
-//		Vector3 worldUpperRight = transform.position - Vector3.right * gridSizeX / 2 - Vector3.down * gridSizeY / 2;
-
+		Vector2 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector2(0 + nodeRadius, Screen.height - nodeRadius));
 
 		for (int x = 0; x < gridSizeX; x ++){
 			for (int y = 0; y < gridSizeY; y ++){
-				Vector3 worldPoint = worldUpperRight + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.down * (y * nodeDiameter + nodeRadius);
-				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
-
+				Vector2 worldPoint = worldUpperRight + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.down * (y * nodeDiameter + nodeRadius);
+				bool walkable = !(Physics2D.OverlapPoint(worldPoint, unwalkableMask));  
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
-
 			}
 		}
 	} 
@@ -70,9 +65,9 @@ public class Grid : MonoBehaviour {
 		return neighbours;
 	}
 
-	public Node NodeFromWorldPoint(Vector3 worldPosition){
+	public Node NodeFromWorldPoint(Vector2 worldPosition){
 		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;
+		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
 		percentX = Mathf.Clamp01(percentX);
 		percentY = Mathf.Clamp01(percentY);
 
@@ -97,7 +92,7 @@ public class Grid : MonoBehaviour {
 					}
 				}
 
-				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+				Gizmos.DrawCube(n.worldPosition, Vector2.one * (nodeDiameter - 0.1f));
 				 
 			}
 		}

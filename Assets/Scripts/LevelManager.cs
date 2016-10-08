@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour {
 
 		GameObject newTile = Instantiate(tilePrefabs[tileIndex]);
 		newTile.transform.position = new Vector3(worldStart.x + TileSize * x, worldStart.y - TileSize * y, 0);
+		newTile.transform.parent = gameObject.transform;
 	}
 
 	public string[] ReadLevelText(){

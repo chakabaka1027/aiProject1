@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour {
 	bool isGrounded;
 	bool isJumping;
 
+	public bool isPressingLeft;
+	public bool isPressingRight;
+	public bool isPressingJump;
+
 
 	// Use this for initialization
 	void Start () {
