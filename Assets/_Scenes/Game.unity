@@ -314,6 +314,9 @@ MonoBehaviour:
   groundPoint: {fileID: 549086650}
   radius: 0.01
   speed: 3
+  isPressingLeft: 0
+  isPressingRight: 0
+  isPressingJump: 0
 --- !u!1 &1169329776
 GameObject:
   m_ObjectHideFlags: 0
