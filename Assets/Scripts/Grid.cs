@@ -41,8 +41,6 @@ public class Grid : MonoBehaviour {
 				Vector2 worldPoint = worldUpperRight + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.down * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics2D.OverlapPoint(worldPoint, unwalkableMask));  
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
-//				Instantiate(cube, worldPoint, Quaternion.identity);
-
 			}
 		}
 	} 
