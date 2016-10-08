@@ -8,11 +8,8 @@ public class Grid : MonoBehaviour {
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
-	public GameObject nodeHolder;
 
-	[Header("Cube Node")]
-	public GameObject cube;
-	public Color walkableColor;
+	string[] mapData;
 
 	Node[,] grid;
 
@@ -21,8 +18,15 @@ public class Grid : MonoBehaviour {
 
 	void Start(){
 		nodeDiameter = nodeRadius * 2;
-		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
-		gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
+
+		mapData = FindObjectOfType<LevelManager>().ReadLevelText();
+
+		gridWorldSize.x = Mathf.RoundToInt(mapData[0].ToCharArray().Length * nodeDiameter);
+		gridWorldSize.y = Mathf.RoundToInt(mapData.Length * nodeDiameter);
+
+		gridSizeX = Mathf.RoundToInt(mapData[0].ToCharArray().Length);
+		gridSizeY = Mathf.RoundToInt(mapData.Length);
+
 		CreateGrid();
 	}
 
@@ -30,11 +34,14 @@ public class Grid : MonoBehaviour {
 		grid = new Node[gridSizeX, gridSizeY];
 
 		//bottom left corner of grid
-		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
+		Vector3 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+
+//		Vector3 worldUpperRight = transform.position - Vector3.right * gridSizeX / 2 - Vector3.down * gridSizeY / 2;
+
 
 		for (int x = 0; x < gridSizeX; x ++){
 			for (int y = 0; y < gridSizeY; y ++){
-				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
+				Vector3 worldPoint = worldUpperRight + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.down * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
 
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
@@ -77,7 +84,7 @@ public class Grid : MonoBehaviour {
 
 	public List<Node> path; 
 	void OnDrawGizmos(){
-		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
 
 		if (grid != null){
 			foreach(Node n in grid){
@@ -96,13 +103,5 @@ public class Grid : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator DrawGrid(){
-		foreach(Node n in grid){
-			yield return new WaitForSeconds(0.00001f);
-			GameObject cubeNode = Instantiate(cube, n.worldPosition, transform.rotation) as GameObject;
-			cubeNode.transform.localScale = Vector3.one * (nodeDiameter - 0.1f);
-			cubeNode.transform.parent = nodeHolder.transform;
-			cubeNode.GetComponent<MeshRenderer>().material.color = (n.walkable)?walkableColor:Color.red;
-		}
-	}
+
 }

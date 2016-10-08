@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject[] tilePrefabs;
+	public Vector3 worldStart;
 
 	public float TileSize{
 		get { return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x * 3;}
@@ -21,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 		int mapX = mapData[0].ToCharArray().Length;
 		int mapY = mapData.Length;
 
-		Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+		worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
 		for (int y = 0; y < mapY; y++){
 			char[] newTiles = mapData[y].ToCharArray();
@@ -39,7 +40,7 @@ public class LevelManager : MonoBehaviour {
 		newTile.transform.position = new Vector3(worldStart.x + TileSize * x, worldStart.y - TileSize * y, 0);
 	}
 
-	private string[] ReadLevelText(){
+	public string[] ReadLevelText(){
 		TextAsset bindData = Resources.Load("Level") as TextAsset;
 
 		string data = bindData.text.Replace(Environment.NewLine, string.Empty);
