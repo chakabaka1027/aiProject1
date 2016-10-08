@@ -123,6 +123,7 @@ MonoBehaviour:
     m_Bits: 0
   gridWorldSize: {x: 0, y: 0}
   nodeRadius: 0
+  cube: {fileID: 0}
 --- !u!4 &291825383
 Transform:
   m_ObjectHideFlags: 0
@@ -152,6 +153,7 @@ MonoBehaviour:
     m_Bits: 256
   gridWorldSize: {x: 0, y: 0}
   nodeRadius: 0.24
+  cube: {fileID: 1000011026538154, guid: 4d88db2afee0d492cb8aa4bfcd4aa334, type: 2}
 --- !u!1 &549086649
 GameObject:
   m_ObjectHideFlags: 0

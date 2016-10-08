@@ -8,7 +8,7 @@ public class Grid : MonoBehaviour {
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
-
+	public GameObject cube;
 	string[] mapData;
 
 	Node[,] grid;
@@ -39,9 +39,9 @@ public class Grid : MonoBehaviour {
 		for (int x = 0; x < gridSizeX; x ++){
 			for (int y = 0; y < gridSizeY; y ++){
 				Vector2 worldPoint = worldUpperRight + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.down * (y * nodeDiameter + nodeRadius);
-				bool walkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableMask));  
-
+				bool walkable = !(Physics2D.OverlapPoint(worldPoint, unwalkableMask));  
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
+//				Instantiate(cube, worldPoint, Quaternion.identity);
 
 			}
 		}
