@@ -13,7 +13,7 @@ public class AStar : MonoBehaviour {
 	}
 
 	void Update(){
-		if(Input.GetKeyDown(KeyCode.Space)){
+		if(Input.GetKeyDown(KeyCode.Space) && target != null){
 			FindPath(seeker.position, target.position);
 		}
 	}
@@ -21,8 +21,6 @@ public class AStar : MonoBehaviour {
 	public void FindPath(Vector2 startPosition, Vector2 targetPosition){
 		Node startNode = grid.NodeFromWorldPoint(startPosition);
 		Node targetNode = grid.NodeFromWorldPoint(targetPosition);
-
-		print(startNode.worldPosition);
 
 		List<Node> openSet = new List<Node>();
 		HashSet<Node> closedSet = new HashSet<Node>();
