@@ -13,12 +13,14 @@ public class AStar : MonoBehaviour {
 	}
 
 	void Update(){
-		FindPath(seeker.position, target.position);
+//		FindPath(seeker.position, target.position);
 	}
 		
-	void FindPath(Vector2 startPosition, Vector2 targetPosition){
+	public void FindPath(Vector2 startPosition, Vector2 targetPosition){
 		Node startNode = grid.NodeFromWorldPoint(startPosition);
 		Node targetNode = grid.NodeFromWorldPoint(targetPosition);
+
+		print(startNode.worldPosition);
 
 		List<Node> openSet = new List<Node>();
 		HashSet<Node> closedSet = new HashSet<Node>();
