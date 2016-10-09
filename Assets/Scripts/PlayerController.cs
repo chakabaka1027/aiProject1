@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
 	public Transform groundPoint;
 	public float radius;
 
+	//waypoint
+	public LayerMask clickPoint;
+
 	Rigidbody2D rb;
 	[SerializeField]
 	float speed = 3;
@@ -26,6 +29,22 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 
+	}
+
+	void Update(){
+	//Making a Waypoint
+		if (Input.GetMouseButtonDown(0)){
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+			if (hit){
+				hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+//				FindObjectOfType<Grid>().FindGroundNode(Input.mousePosition);
+				FindObjectOfType<Grid>().NodeFromWorldPoint(hit.point);
+
+				FindObjectOfType<AStar>().FindPath(gameObject.transform.position, hit.collider.gameObject.transform.position);
+
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -67,4 +86,6 @@ public class PlayerController : MonoBehaviour {
 			transform.localScale = scale;
 		} 
 	}
+
+
 }
