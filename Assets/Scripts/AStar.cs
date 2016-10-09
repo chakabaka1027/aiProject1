@@ -20,6 +20,7 @@ public class AStar : MonoBehaviour {
 		Node startNode = grid.NodeFromWorldPoint(startPosition);
 		Node targetNode = grid.NodeFromWorldPoint(targetPosition);
 
+		print(startNode.worldPosition);
 
 		List<Node> openSet = new List<Node>();
 		HashSet<Node> closedSet = new HashSet<Node>();

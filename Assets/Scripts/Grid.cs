@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
+	public Transform mario;
+
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
@@ -34,7 +36,7 @@ public class Grid : MonoBehaviour {
 		grid = new Node[gridSizeX, gridSizeY];
 
 		//bottom left corner of grid
-		Vector2 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector2(0 + nodeRadius, Screen.height - nodeRadius));
+		Vector2 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector2(0 , Screen.height ));
 
 		for (int x = 0; x < gridSizeX; x ++){
 			for (int y = 0; y < gridSizeY; y ++){
@@ -82,7 +84,7 @@ public class Grid : MonoBehaviour {
 
 	public Node NodeFromWorldPoint(Vector2 worldPosition){
 		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
+		float percentY = (-worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
 		percentX = Mathf.Clamp01(percentX);
 		percentY = Mathf.Clamp01(percentY);
 
@@ -90,6 +92,11 @@ public class Grid : MonoBehaviour {
 		int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
 
 		return grid[x,y];
+
+
+
+
+
 	}
 
 	public List<Node> path; 
@@ -97,6 +104,9 @@ public class Grid : MonoBehaviour {
 		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
 
 		if (grid != null){
+
+			Node playerNode = NodeFromWorldPoint(mario.position);
+
 			foreach(Node n in grid){
 
 				Gizmos.color = (n.walkable)?Color.white:Color.red;
@@ -105,6 +115,10 @@ public class Grid : MonoBehaviour {
 					if(path.Contains(n)){
 						Gizmos.color = Color.black;
 					}
+				}
+				//test
+				if(playerNode == n){
+					Gizmos.color = Color.cyan;
 				}
 
 				Gizmos.DrawCube(n.worldPosition, Vector2.one * (nodeDiameter - 0.1f));
