@@ -145,13 +145,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 291825381}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f83c47656f6741b184ed570087f73c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   seeker: {fileID: 717503524}
-  target: {fileID: 0}
+  target: {fileID: 1416346959}
 --- !u!1 &549086649
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   - 95: {fileID: 1416346955}
   - 114: {fileID: 1416346954}
   m_Layer: 0
-  m_Name: Mario (1)
+  m_Name: Peach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416346953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73c91d4780b954972862ca5e2a9c06cc, type: 3}
   m_Name: 
@@ -530,7 +530,7 @@ Animator:
   m_GameObject: {fileID: 1416346953}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9630ed0c37d014634ac6a5a17c745d4c, type: 2}
+  m_Controller: {fileID: 9100000, guid: a49b407c0f7ef44668f34c2d82a79f52, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -551,7 +551,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.32}
+  m_Size: {x: 3.41, y: 5.45}
 --- !u!50 &1416346957
 Rigidbody2D:
   serializedVersion: 2
@@ -598,7 +598,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300030, guid: 9164473ad1fb348f0b8b96645f0a3349, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97267d75733d740648346a9c021af36b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -609,8 +609,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416346953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.39, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalPosition: {x: -8.54, y: 0.119, z: 0}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 0.125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1046346030}
