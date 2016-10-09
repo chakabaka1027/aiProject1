@@ -13,7 +13,7 @@ public class AStar : MonoBehaviour {
 	}
 
 	void Update(){
-		FindPath(seeker.position, target.position);
+//		FindPath(seeker.position, target.position);
 	}
 		
 	public void FindPath(Vector2 startPosition, Vector2 targetPosition){

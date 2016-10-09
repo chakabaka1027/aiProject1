@@ -39,9 +39,7 @@ public class PlayerController : MonoBehaviour {
 			if (hit){
 				hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
 //				FindObjectOfType<Grid>().FindGroundNode(Input.mousePosition);
-				FindObjectOfType<Grid>().NodeFromWorldPoint(hit.point);
-
-				FindObjectOfType<AStar>().FindPath(gameObject.transform.position, hit.collider.gameObject.transform.position);
+//				FindObjectOfType<AStar>().FindPath(gameObject.transform.position, hit.collider.gameObject.transform.position);
 
 			}
 		}

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Grid : MonoBehaviour {
 
 	public Transform mario;
+	public Transform target;
 
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
@@ -92,11 +93,6 @@ public class Grid : MonoBehaviour {
 		int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
 
 		return grid[x,y];
-
-
-
-
-
 	}
 
 	public List<Node> path; 
@@ -106,6 +102,8 @@ public class Grid : MonoBehaviour {
 		if (grid != null){
 
 			Node playerNode = NodeFromWorldPoint(mario.position);
+			Node targetNode = NodeFromWorldPoint(target.position);
+
 
 			foreach(Node n in grid){
 
@@ -118,6 +116,10 @@ public class Grid : MonoBehaviour {
 				}
 				//test
 				if(playerNode == n){
+					Gizmos.color = Color.cyan;
+				}
+
+				if(targetNode == n){
 					Gizmos.color = Color.cyan;
 				}
 
