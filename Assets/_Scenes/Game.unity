@@ -492,7 +492,7 @@ GameObject:
   - 95: {fileID: 1416346955}
   - 114: {fileID: 1416346954}
   m_Layer: 0
-  m_Name: Peach
+  m_Name: Peach (Target)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
