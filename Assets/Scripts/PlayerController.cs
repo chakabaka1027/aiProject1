@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
 	//waypoint
 	public LayerMask clickPoint;
+	public GameObject peach;
 
 	Rigidbody2D rb;
 	[SerializeField]
@@ -37,9 +38,8 @@ public class PlayerController : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 			if (hit){
-				hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
-//				FindObjectOfType<Grid>().FindGroundNode(Input.mousePosition);
-//				FindObjectOfType<AStar>().FindPath(gameObject.transform.position, hit.collider.gameObject.transform.position);
+//				hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+				peach.transform.position = hit.point;
 
 			}
 		}
