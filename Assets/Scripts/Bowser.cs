@@ -14,6 +14,11 @@ public class Bowser : MonoBehaviour {
 			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 		}
 
+		if (Input.GetMouseButtonDown(0)){
+			StopCoroutine("FollowPath");
+		}
+
+		//face peach
 		if (target.position.x > gameObject.transform.position.x){
 			gameObject.GetComponent<SpriteRenderer>().flipX = false;
 		} else {
