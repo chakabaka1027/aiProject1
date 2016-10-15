@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
-	public Transform mario;
+	public Transform seeker;
 	public Transform target;
 
 	public LayerMask unwalkableMask;
@@ -101,7 +101,7 @@ public class Grid : MonoBehaviour {
 
 		if (grid != null){
 
-			Node playerNode = NodeFromWorldPoint(mario.position);
+			Node playerNode = NodeFromWorldPoint(seeker.position);
 			Node targetNode = NodeFromWorldPoint(target.position);
 
 

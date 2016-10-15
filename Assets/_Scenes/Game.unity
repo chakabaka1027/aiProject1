@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536a48d7c1b9940ae846a125c70d5d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mario: {fileID: 717503524}
+  seeker: {fileID: 1926555414}
   target: {fileID: 977801816}
   unwalkableMask:
     serializedVersion: 2
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f83c47656f6741b184ed570087f73c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 717503524}
+  seeker: {fileID: 1926555414}
   target: {fileID: 977801816}
 --- !u!1 &549086649
 GameObject:
@@ -607,6 +607,7 @@ GameObject:
   - 61: {fileID: 1926555411}
   - 95: {fileID: 1926555410}
   - 114: {fileID: 1926555409}
+  - 114: {fileID: 1926555415}
   m_Layer: 0
   m_Name: Bowser
   m_TagString: Untagged
@@ -666,9 +667,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.32}
+  m_Size: {x: 0.47, y: 0.63}
 --- !u!50 &1926555412
 Rigidbody2D:
   serializedVersion: 2
@@ -733,3 +734,15 @@ Transform:
   - {fileID: 1744036480}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1926555415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1926555408}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dcaeb70b51f460187a25b8dd90ee17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 977801816}
