@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
-	public Transform mario;
+	public bool gizmosActive = true;
+
+	public Transform seeker;
 	public Transform target;
 
 	public LayerMask unwalkableMask;
@@ -48,21 +50,6 @@ public class Grid : MonoBehaviour {
 		}
 	} 
 
-//	public void FindGroundNode(Vector2 clickPos){
-//
-//		Node clickedNode = NodeFromWorldPoint(clickPos);
-//
-//		for (int y = clickedNode.gridY; y < gridSizeY; y ++){
-//			if (grid[clickedNode.gridX, y].walkable == false){
-//				continue;
-//			}
-//
-//			if (grid[clickedNode.gridX, y].walkable == true){
-//				print(grid[clickedNode.gridX, y].worldPosition);
-//			}
-//		}
-//	}
-
 	public List<Node> GetNeighbours(Node node){
 		List<Node> neighbours = new List<Node>();
 
@@ -99,9 +86,9 @@ public class Grid : MonoBehaviour {
 	void OnDrawGizmos(){
 		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
 
-		if (grid != null){
+		if (grid != null && gizmosActive == true){
 
-			Node playerNode = NodeFromWorldPoint(mario.position);
+			Node playerNode = NodeFromWorldPoint(seeker.position);
 			Node targetNode = NodeFromWorldPoint(target.position);
 
 
