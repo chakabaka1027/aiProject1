@@ -48,21 +48,6 @@ public class Grid : MonoBehaviour {
 		}
 	} 
 
-//	public void FindGroundNode(Vector2 clickPos){
-//
-//		Node clickedNode = NodeFromWorldPoint(clickPos);
-//
-//		for (int y = clickedNode.gridY; y < gridSizeY; y ++){
-//			if (grid[clickedNode.gridX, y].walkable == false){
-//				continue;
-//			}
-//
-//			if (grid[clickedNode.gridX, y].walkable == true){
-//				print(grid[clickedNode.gridX, y].worldPosition);
-//			}
-//		}
-//	}
-
 	public List<Node> GetNeighbours(Node node){
 		List<Node> neighbours = new List<Node>();
 

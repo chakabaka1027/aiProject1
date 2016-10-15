@@ -5,15 +5,17 @@ public class Bowser : MonoBehaviour {
 
 
 	public Transform target;
-	float speed = 20;
-	Vector3[] path;
+	public float speed = 3;
+	Vector2[] path;
 	int targetIndex;
 
-	void Start() {
-//		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+	void Update() {
+		if(Input.GetKeyDown(KeyCode.Space) && target != null){
+			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+		}
 	}
 
-	public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
+	public void OnPathFound(Vector2[] newPath, bool pathSuccessful) {
 		if (pathSuccessful) {
 			path = newPath;
 			targetIndex = 0;
@@ -43,7 +45,7 @@ public class Bowser : MonoBehaviour {
 		if (path != null) {
 			for (int i = targetIndex; i < path.Length; i ++) {
 				Gizmos.color = Color.black;
-				Gizmos.DrawCube(path[i], Vector3.one);
+				Gizmos.DrawCube(path[i], Vector2.one);
 
 				if (i == targetIndex) {
 					Gizmos.DrawLine(transform.position, path[i]);
