@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
+	public bool gizmosActive = true;
+
 	public Transform seeker;
 	public Transform target;
 
@@ -84,7 +86,7 @@ public class Grid : MonoBehaviour {
 	void OnDrawGizmos(){
 		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
 
-		if (grid != null){
+		if (grid != null && gizmosActive == true){
 
 			Node playerNode = NodeFromWorldPoint(seeker.position);
 			Node targetNode = NodeFromWorldPoint(target.position);

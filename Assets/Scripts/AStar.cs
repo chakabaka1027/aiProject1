@@ -72,8 +72,6 @@ public class AStar : MonoBehaviour {
 			waypoints = RetracePath(startNode, targetNode);
 		}
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
-
-
 	}
 
 	Vector2[] RetracePath(Node startNode, Node endNode){
@@ -85,10 +83,24 @@ public class AStar : MonoBehaviour {
 			currentNode = currentNode.parent;
 		}
 
-		Vector2[] waypoints = SimplifyPath(path);
-		Array.Reverse(waypoints);
+//	Uncomment the code below for Simplified Path
+//		Vector2[] waypoints = SimplifyPath(path);
+//		Array.Reverse(waypoints);
+//		return waypoints;
 
+		Vector2[] waypoints = NormalPath(path);
+		Array.Reverse(waypoints);
 		return waypoints;
+	}
+
+	Vector2[] NormalPath(List<Node> path){
+
+		List<Vector2> waypoints = new List<Vector2>();
+		for (int i = 1; i < path.Count; i ++) {
+				
+			waypoints.Add(path[i].worldPosition);
+		}
+		return waypoints.ToArray();
 
 	}
 

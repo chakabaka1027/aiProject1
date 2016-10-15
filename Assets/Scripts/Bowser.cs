@@ -13,6 +13,13 @@ public class Bowser : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space) && target != null){
 			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 		}
+
+		if (target.position.x > gameObject.transform.position.x){
+			gameObject.GetComponent<SpriteRenderer>().flipX = false;
+		} else {
+			gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+		}
 	}
 
 	public void OnPathFound(Vector2[] newPath, bool pathSuccessful) {
@@ -45,7 +52,7 @@ public class Bowser : MonoBehaviour {
 		if (path != null) {
 			for (int i = targetIndex; i < path.Length; i ++) {
 				Gizmos.color = Color.black;
-				Gizmos.DrawCube(path[i], Vector2.one);
+				Gizmos.DrawCube(path[i], new Vector2(.1f, .1f));
 
 				if (i == targetIndex) {
 					Gizmos.DrawLine(transform.position, path[i]);
