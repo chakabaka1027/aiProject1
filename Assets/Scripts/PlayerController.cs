@@ -3,11 +3,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	//jumping
+	[Header("Jumping")]
 	public LayerMask groundedMask;
 	public Transform groundPoint;
 	public float radius;
 
 	//waypoint
+	[Header("Waypoint")]
 	public LayerMask clickPoint;
 	public GameObject peach;
 
@@ -38,7 +40,6 @@ public class PlayerController : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 			if (hit){
-//				hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
 				peach.transform.position = hit.point;
 
 			}
