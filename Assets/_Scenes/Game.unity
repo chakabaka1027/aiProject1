@@ -358,6 +358,8 @@ MonoBehaviour:
   helpParticles: {fileID: 1000012092863494, guid: 5ede18f1d9dfc41f5b5d8b274df78925,
     type: 2}
   angryEmote: {fileID: 1000012426455246, guid: 8f1ac2045c73f4d0598f0900aba85603, type: 2}
+  emotionLevel: 0
+  isReset: 1
 --- !u!1 &1169329776
 GameObject:
   m_ObjectHideFlags: 0
