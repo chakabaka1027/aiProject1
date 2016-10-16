@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask clickPoint;
 	public GameObject peach;
 
+	[Header("Audio")]
+	public GameObject audioManager;
+	public AudioClip marioJump;
+
+	AudioSource backgroundAudio;
+	AudioSource sfxAudio;
+
 	Rigidbody2D rb;
 	[SerializeField]
 	float speed = 3;
@@ -21,16 +28,16 @@ public class PlayerController : MonoBehaviour {
 	bool isGrounded;
 	bool isJumping;
 
-	public bool isPressingLeft;
-	public bool isPressingRight;
-	public bool isPressingJump;
-
 
 	// Use this for initialization
 	void Start () {
 		facingRight = true;
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+
+		backgroundAudio = audioManager.GetComponent<AudioSource>();
+		sfxAudio = gameObject.GetComponent<AudioSource>();
+
 
 	}
 
@@ -41,6 +48,9 @@ public class PlayerController : MonoBehaviour {
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 			if (hit){
 				peach.transform.position = hit.point;
+				backgroundAudio.pitch = Time.timeScale = 1f;
+
+				FindObjectOfType<Peach>().MakeGoodSound();
 
 			}
 		}
@@ -60,6 +70,7 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.W) && isGrounded){
 			rb.AddForce(new Vector2(0, 275));
+			sfxAudio.PlayOneShot(marioJump, 0.1f);
 		}
 
 		if(!isGrounded){
