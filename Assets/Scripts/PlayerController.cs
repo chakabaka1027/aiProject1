@@ -3,11 +3,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	//jumping
+	[Header("Jumping")]
 	public LayerMask groundedMask;
 	public Transform groundPoint;
 	public float radius;
 
 	//waypoint
+	[Header("Waypoint")]
 	public LayerMask clickPoint;
 	public GameObject peach;
 
