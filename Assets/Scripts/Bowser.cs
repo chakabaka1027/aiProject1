@@ -3,14 +3,13 @@ using System.Collections;
 
 public class Bowser : MonoBehaviour {
 
-
 	public Transform target;
 	public float speed = 3;
 	Vector2[] path;
 	int targetIndex;
 
 	void Update() {
-		if(Input.GetKeyDown(KeyCode.Space) && target != null){
+		if(Input.GetKeyDown(KeyCode.Space) && target != null && target.GetComponent<Peach>().isReset == true){
 			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 		}
 
