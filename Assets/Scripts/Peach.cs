@@ -11,8 +11,9 @@ public class Peach : MonoBehaviour {
 	public GameObject angryEmote;
 
 	public enum EmotionLevel{neutral, scared, happy};
-	EmotionLevel emotionLevel;
+	public EmotionLevel emotionLevel;
 
+	public bool isReset = true;
 
 	GameObject currentHearts;
 	GameObject currentHelp;
@@ -33,6 +34,7 @@ public class Peach : MonoBehaviour {
 
 			//return peach back to neutral emotion
 			emotionLevel = EmotionLevel.neutral;
+			isReset = true;
 
 			//clean hierarchy of heart or help particles
 			if (currentHearts != null){
@@ -57,7 +59,7 @@ public class Peach : MonoBehaviour {
 				emotionLevel = EmotionLevel.happy;
 
 				currentAngryEmote = Instantiate(angryEmote, bowser.position + Vector3.up * 0.7f, Quaternion.identity) as GameObject;
-
+				isReset = false;
 
 				//hey bowser, stop following peach!
 				FindObjectOfType<Bowser>().StopCoroutine("FollowPath");
@@ -67,6 +69,7 @@ public class Peach : MonoBehaviour {
 			if (col.gameObject == bowser.gameObject){
 				currentHelp = Instantiate(helpParticles, transform.position + Vector3.up * 0.5f, Quaternion.Euler(-90, 0, 0)) as GameObject;
 				emotionLevel = EmotionLevel.scared;
+				isReset = false;
 
 			}
 		}
