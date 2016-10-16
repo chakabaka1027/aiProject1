@@ -5,12 +5,28 @@ public class Bowser : MonoBehaviour {
 
 	public Transform target;
 	public float speed = 3;
+
+	[Header("Audio")]
+	public GameObject audioManager;
+	public AudioClip bowserAngry;
+	AudioSource backgroundAudio;	
+	AudioSource sfxAudio;
+
+
+
 	Vector2[] path;
 	int targetIndex;
+
+	void Start(){
+		backgroundAudio = audioManager.GetComponent<AudioSource>();
+		sfxAudio = gameObject.GetComponent<AudioSource>();
+	}
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Space) && target != null && target.GetComponent<Peach>().isReset == true){
 			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+			backgroundAudio.pitch = Time.timeScale = 1.5f;
+			sfxAudio.PlayOneShot(bowserAngry, 0.5f);
 		}
 
 		if (Input.GetMouseButtonDown(0)){
