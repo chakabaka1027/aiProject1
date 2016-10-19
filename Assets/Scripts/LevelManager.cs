@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour {
 
 //			string parentText = data[0];
 			int mapX = int.Parse(data[1]);
+
 			int mapY = int.Parse(data[2]);
 			int tileType = int.Parse(data[3]);
 
