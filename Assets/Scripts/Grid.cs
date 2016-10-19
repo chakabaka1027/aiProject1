@@ -14,7 +14,7 @@ public class Grid : MonoBehaviour {
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
 	public GameObject cube;
-	string[] mapData;
+//	string[] mapData;
 
 	Node[,] grid;
 
@@ -24,13 +24,19 @@ public class Grid : MonoBehaviour {
 	void Start(){
 		nodeDiameter = nodeRadius * 2;
 
-		mapData = FindObjectOfType<LevelManager>().ReadLevelText();
+//		mapData = FindObjectOfType<LevelManager>().ReadLevelText();
 
-		gridWorldSize.x = Mathf.RoundToInt(mapData[0].ToCharArray().Length * nodeDiameter);
-		gridWorldSize.y = Mathf.RoundToInt(mapData.Length * nodeDiameter);
+//		gridWorldSize.x = Mathf.RoundToInt(mapData[0].ToCharArray().Length * nodeDiameter);
+//		gridWorldSize.y = Mathf.RoundToInt(mapData.Length * nodeDiameter);
+//
+//		gridSizeX = Mathf.RoundToInt(mapData[0].ToCharArray().Length);
+//		gridSizeY = Mathf.RoundToInt(mapData.Length);
 
-		gridSizeX = Mathf.RoundToInt(mapData[0].ToCharArray().Length);
-		gridSizeY = Mathf.RoundToInt(mapData.Length);
+		gridWorldSize.x = 37 * nodeDiameter;
+		gridWorldSize.y = 21 * nodeDiameter;
+
+		gridSizeX = 37;
+		gridSizeY = 21;
 
 		Invoke("CreateGrid", 0.1f);
 	}
@@ -38,12 +44,12 @@ public class Grid : MonoBehaviour {
 	void CreateGrid(){
 		grid = new Node[gridSizeX, gridSizeY];
 
-		//bottom left corner of grid
-		Vector2 worldUpperRight = Camera.main.ScreenToWorldPoint(new Vector2(0 , Screen.height ));
+		//upper left corner of grid
+		Vector2 worldUpperLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height));
 
 		for (int x = 0; x < gridSizeX; x ++){
 			for (int y = 0; y < gridSizeY; y ++){
-				Vector2 worldPoint = worldUpperRight + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.down * (y * nodeDiameter + nodeRadius);
+				Vector2 worldPoint = worldUpperLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.down * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics2D.OverlapPoint(worldPoint, unwalkableMask));  
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
 			}
