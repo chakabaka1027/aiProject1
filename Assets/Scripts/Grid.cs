@@ -38,7 +38,7 @@ public class Grid : MonoBehaviour {
 		gridSizeX = 37;
 		gridSizeY = 21;
 
-		Invoke("CreateGrid", 0.1f);
+		Invoke("CreateGrid", 0.2f);
 	}
 
 	void CreateGrid(){
