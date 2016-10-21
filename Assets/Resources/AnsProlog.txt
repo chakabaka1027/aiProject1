@@ -1,0 +1,15 @@
+#const width = 36.
+#const height = 20.
+
+floorTile(0..width, 19..height, 0).
+platformTile(4..8, 17, 1).
+platformTile(4..8, 9, 1).
+platformTile(10..15, 15, 1).
+platformTile(18..20, 13, 1).
+platformTile(11..15, 11, 1).
+platformTile(22..28, 13, 1).
+platformTile(30..34, 11, 1).
+platformTile(30..33, 15, 1).
+platformTile(35..36, 17, 1).
+
+sky(0..width, 0..height, 2) :- sky != platformTile, sky != floorTile.
