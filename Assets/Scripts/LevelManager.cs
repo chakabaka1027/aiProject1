@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
 	private GameObject[] tilePrefabs;
 	public Vector3 worldStart;
 
+	char[] delimiterChars = { ' ', ',', '(', ')'};
+
 	public float TileSize{
 		get { return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x * 3;}
 	}
@@ -18,34 +20,33 @@ public class LevelManager : MonoBehaviour {
 
 	void CreateLevel(){
 		string[] mapData = ReadLevelText();
-
-		int mapX = mapData[0].ToCharArray().Length;
-		int mapY = mapData.Length;
-
 		worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
-		for (int y = 0; y < mapY; y++){
-			char[] newTiles = mapData[y].ToCharArray();
+		//parsing each delimited element
+		for (int i = 0; i < mapData.Length; i ++){
+			string[] data = mapData[i].Split(delimiterChars);
 
-			for (int x = 0; x < mapX; x++){
-				PlaceTile(newTiles[x].ToString(), x, y, worldStart);
-			}
+//			string parentText = data[0];
+			int mapX = int.Parse(data[1]);
+
+			int mapY = int.Parse(data[2]);
+			int tileType = int.Parse(data[3]);
+
+			PlaceTile(tileType, mapX, mapY, worldStart);
 		}
 	}
 
-	private void PlaceTile(string tileType, int x, int y, Vector3 worldStart){
-		int tileIndex = int.Parse(tileType);
-
-		GameObject newTile = Instantiate(tilePrefabs[tileIndex]);
+	private void PlaceTile(int tileType, int x, int y, Vector3 worldStart){
+		GameObject newTile = Instantiate(tilePrefabs[tileType]);
 		newTile.transform.position = new Vector3(worldStart.x + TileSize * x, worldStart.y - TileSize * y, 0);
 		newTile.transform.parent = gameObject.transform;
 	}
 
 	public string[] ReadLevelText(){
-		TextAsset bindData = Resources.Load("Level") as TextAsset;
+		TextAsset bindData = Resources.Load("Level 2") as TextAsset;
 
-		string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+		string data = bindData.text;
 
-		return data.Split('-');
+		return data.Split(' ');
 	}
 }
