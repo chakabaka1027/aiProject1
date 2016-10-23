@@ -1,15 +1,20 @@
 #const width = 36.
 #const height = 20.
+xPos(0..width).
+yPos(0..height).
+tileType(0..2).
 
-floorTile(0..width, 19..height, 0).
-platformTile(4..8, 17, 1).
-platformTile(4..8, 9, 1).
-platformTile(10..15, 15, 1).
-platformTile(18..20, 13, 1).
-platformTile(11..15, 11, 1).
-platformTile(22..28, 13, 1).
-platformTile(30..34, 11, 1).
-platformTile(30..33, 15, 1).
-platformTile(35..36, 17, 1).
+%creating 20 tiles with random x and y positions with tileType 1
+20 { tile(X, Y, 1) : xPos(X), yPos(Y) }.
 
-sky(0..width, 0..height, 2) :- sky != platformTile, sky != floorTile.
+%setting a constraint that no two tiles with tileType 1 can have the same xPos
+:- tile(X,Y,1), tile(XX,Y,1), X != XX.
+
+%creating the ground
+%tile(0..width, 19..height, 0).
+
+%creating the sky
+%tile(0..width, 0..height, 2).
+
+%constraining output to only print the tiles
+#show tile/3.
