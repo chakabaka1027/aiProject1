@@ -17,21 +17,28 @@ public class AStar : MonoBehaviour {
 	public void StartFindPath(Vector3 startPos, Vector3 targetPos) {
 		StartCoroutine(FindPath(startPos,targetPos));
 	}
-		
+
+	//AStar Algorithm
+
 	public IEnumerator FindPath(Vector2 startPosition, Vector2 targetPosition){
 
 		Vector2[] waypoints = new Vector2[0];
 		bool pathSuccess = false;
 
+		//Establishing start and target nodes from grid
 		Node startNode = grid.NodeFromWorldPoint(startPosition);
 		Node targetNode = grid.NodeFromWorldPoint(targetPosition);
 
 		if(startNode.walkable && targetNode.walkable){
+
+		//open and closed list and hashset
 			List<Node> openSet = new List<Node>();
 			HashSet<Node> closedSet = new HashSet<Node>();
 
+		//add start node to open list
 			openSet.Add(startNode);
 
+		//loop
 			while (openSet.Count > 0){
 				Node currentNode = openSet[0];
 				for (int i = 1; i < openSet.Count; i ++){
@@ -49,11 +56,13 @@ public class AStar : MonoBehaviour {
 					break;
 				}
 
+				//check if neighbor is walkable, if not, skip
 				foreach (Node neighbour in grid.GetNeighbours(currentNode)){
 					if(!neighbour.walkable || closedSet.Contains(neighbour)){
 						continue;
 					}
 
+				//if traversable, set f cost, parent, and add to open list if not in open list
 					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 					if(newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)){
 						neighbour.gCost = newMovementCostToNeighbour;
@@ -74,6 +83,7 @@ public class AStar : MonoBehaviour {
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 	}
 
+	//retrace path from children and parents
 	Vector2[] RetracePath(Node startNode, Node endNode){
 		List<Node> path = new List<Node>(); 
 		Node currentNode = endNode;
@@ -104,6 +114,7 @@ public class AStar : MonoBehaviour {
 
 	}
 
+	//currently unused because simplifying the path made bowser more obviously clip through obstacles when pathfinding around them
 	Vector2[] SimplifyPath(List<Node> path){
 		List<Vector2> waypoints = new List<Vector2>();
 		Vector2 directionOld = Vector2.zero;
@@ -118,7 +129,7 @@ public class AStar : MonoBehaviour {
 		return waypoints.ToArray();
 	}
 
-
+	//checking distances, diagonals most costly
 	int GetDistance(Node nodeA, Node nodeB){
 		int distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
 		int distanceY = Mathf.Abs(nodeA.gridY - nodeB.gridY);

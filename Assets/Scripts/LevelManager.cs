@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
 	private GameObject[] tilePrefabs;
 	public Vector3 worldStart;
 
+	//sets up delimiter characters
 	char[] delimiterChars = { ' ', ',', '(', ')'};
 
 	public float TileSize{
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour {
 		CreateLevel();
 	}
 
+	//creates level based off of strings read from txt file, breaks it down using delimiters
 	void CreateLevel(){
 		string[] mapData = ReadLevelText();
 		worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
@@ -42,11 +44,13 @@ public class LevelManager : MonoBehaviour {
 		newTile.transform.parent = gameObject.transform;
 	}
 
+	//reads the txt file and turns it to a string
 	public string[] ReadLevelText(){
 		TextAsset bindData = Resources.Load("Level 2") as TextAsset;
 
 		string data = bindData.text;
 
+		//break down the string by spaces
 		return data.Split(' ');
 	}
 }
