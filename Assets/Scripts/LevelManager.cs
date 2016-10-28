@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public string[] ReadLevelText(){
-		TextAsset bindData = Resources.Load("Level 2") as TextAsset;
+		TextAsset bindData = Resources.Load("Level 1") as TextAsset;
 
 		string data = bindData.text;
 
