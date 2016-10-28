@@ -9,7 +9,8 @@ The right mouse button places Peach, the A* goal node, into the level.
 The space bar summons Bowser to chase Peach.
 
 For developers interested in how this all works:
-Our worlds are parsed through a txt file located in the resources folder of Unity. This text file is called "Level 1".
+Externally, Clingo and an AnsProlog script generate a txt file.
+Our worlds are parsed through a txt file located in the resources folder of Unity. This text file is called "Level 1". We also created another level called “Level 2”. The txt file that is read can be changed by editing the LevelManager script.
 The LevelManager script parses the txt file based off of preset delimiter characters into several arrays. The level is curated by accessing the integers that are parsed from the strings of these arrays.
 From there, an invisible grid is overlayed over the world to create the A* navigation space. Each cell in the grid corresponds to a tile sprite in the game as well as a node containing the information from the Node script.
 The AStar script uses the grid script to see the search space, understanding which tiles are traversable and which are not. It runs through a loop, beginning with the starting node (the cell Bowser begins at), and searches neighboring nodes, defines Fcosts, and adds and eliminates nodes from an open list and a closed hashset.
