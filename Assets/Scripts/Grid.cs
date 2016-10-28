@@ -14,7 +14,6 @@ public class Grid : MonoBehaviour {
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
 	public GameObject cube;
-//	string[] mapData;
 
 	Node[,] grid;
 
@@ -23,14 +22,6 @@ public class Grid : MonoBehaviour {
 
 	void Start(){
 		nodeDiameter = nodeRadius * 2;
-
-//		mapData = FindObjectOfType<LevelManager>().ReadLevelText();
-
-//		gridWorldSize.x = Mathf.RoundToInt(mapData[0].ToCharArray().Length * nodeDiameter);
-//		gridWorldSize.y = Mathf.RoundToInt(mapData.Length * nodeDiameter);
-//
-//		gridSizeX = Mathf.RoundToInt(mapData[0].ToCharArray().Length);
-//		gridSizeY = Mathf.RoundToInt(mapData.Length);
 
 		gridWorldSize.x = 37 * nodeDiameter;
 		gridWorldSize.y = 21 * nodeDiameter;
@@ -41,6 +32,7 @@ public class Grid : MonoBehaviour {
 		Invoke("CreateGrid", 0.2f);
 	}
 
+	//create a grid of nodes by looping through x and y
 	void CreateGrid(){
 		grid = new Node[gridSizeX, gridSizeY];
 
@@ -56,6 +48,7 @@ public class Grid : MonoBehaviour {
 		}
 	} 
 
+	//functionality to check neighbors in Astar script by starting at the upper left node and moving left to right through all neighbors
 	public List<Node> GetNeighbours(Node node){
 		List<Node> neighbours = new List<Node>();
 
@@ -76,6 +69,7 @@ public class Grid : MonoBehaviour {
 		return neighbours;
 	}
 
+	//functionality to take a vector3 in the world and find its position on the grid
 	public Node NodeFromWorldPoint(Vector2 worldPosition){
 		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
 		float percentY = (-worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
@@ -88,7 +82,9 @@ public class Grid : MonoBehaviour {
 		return grid[x,y];
 	}
 
-	public List<Node> path; 
+	public List<Node> path;
+
+	//debug tools to allow visualization of grid
 	void OnDrawGizmos(){
 		Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
 

@@ -12,8 +12,6 @@ public class Bowser : MonoBehaviour {
 	AudioSource backgroundAudio;	
 	AudioSource sfxAudio;
 
-
-
 	Vector2[] path;
 	int targetIndex;
 
@@ -23,6 +21,8 @@ public class Bowser : MonoBehaviour {
 	}
 
 	void Update() {
+
+		//Make Bowser pathfind on keypress
 		if(Input.GetKeyDown(KeyCode.Space) && target != null && target.GetComponent<Peach>().isReset == true){
 			PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 			backgroundAudio.pitch = Time.timeScale = 1.5f;
@@ -68,6 +68,7 @@ public class Bowser : MonoBehaviour {
 		}
 	}
 
+	//visualization of Astar path
 	public void OnDrawGizmos() {
 		if (path != null) {
 			for (int i = targetIndex; i < path.Length; i ++) {

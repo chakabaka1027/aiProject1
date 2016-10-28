@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+	//platformer controller
+
 		float horizontal = Input.GetAxis("Horizontal");
 		HandleMovement(horizontal);
 		Flip(horizontal);
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour {
 		animator.SetFloat("speed", Mathf.Abs(horizontal));
 	}
 
+	//flip mario's position when moving left or right
 	void Flip(float horizontal){
 		if(horizontal > 0 && !facingRight || horizontal < 0 && facingRight){
 			facingRight = !facingRight;
